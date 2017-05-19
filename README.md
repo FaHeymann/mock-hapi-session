@@ -4,7 +4,7 @@
 npm install --save-dev mock-hapi-session
 ```
 ```bash
-yarn add mock-hapi-session
+yarn add --dev mock-hapi-session
 ```
 
 This plugin allows you to mock [hapi](https://github.com/hapijs/hapi) [yar sessions](https://github.com/hapijs/yar) for testing.
