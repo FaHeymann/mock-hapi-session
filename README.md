@@ -17,7 +17,7 @@ After you set up your hapi server for testing, register the plugin:
 import mockSession from 'mock-hapi-session';
 
 server.register({
-  register: 'mockSession',
+  register: mockSession,
   options: { cookieKey: 'myCookieKey' },
 });
 ```
