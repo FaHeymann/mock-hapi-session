@@ -1,0 +1,16 @@
+module.exports = {
+  pattern: '.+',
+  'coverage-path': './src',
+  coverage: true,
+  threshold: 90,
+  lint: true,
+  'lint-fix': false,
+  verbose: true,
+  colors: true,
+  globals: '__core-js_shared__,COMPILED,regeneratorRuntime,cleanCache,extraInjectors',
+  sourcemaps: true,
+  transform: 'node_modules/lab-babel',
+  reporter: ['console', 'clover', 'html'],
+  output: ['stdout', 'coverage/clover.xml', 'coverage/coverage.html'],
+  timeout: 3000,
+};
