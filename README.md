@@ -3,9 +3,6 @@
 ```bash
 npm install --save-dev mock-hapi-session
 ```
-```bash
-yarn add --dev mock-hapi-session
-```
 
 This plugin allows you to mock [hapi](https://github.com/hapijs/hapi) [yar sessions](https://github.com/hapijs/yar) for testing.
 
@@ -17,7 +14,7 @@ After you set up your hapi server for testing, register the plugin:
 import mockSession from 'mock-hapi-session';
 
 server.register({
-  register: mockSession,
+  plugin: mockSession,
   options: { cookieKey: 'myCookieKey' },
 });
 ```
@@ -31,20 +28,6 @@ server.plugins.mockSession.mock(value);
 
 injects a cookie into yar and returns a promise that resolves to the cookie header value to get access.
 
-Using promises:
-
-```javascript
-server.plugins.mockSession.mock({ some: 'mockedSession' })
-  .then(cookieHeader => server.inject({
-    method: 'GET',
-    url: '/my-route-to-test-that-uses-yar',
-    headers: { cookie: cookieHeader },
-  }))
-  .then(/* ... */);
-```
-
-Using async/await:
-
 ```javascript
 await server.inject({
   method: 'GET',
@@ -52,3 +35,8 @@ await server.inject({
   headers: { cookie: await server.plugins.mockSession.mock({ some: 'mockedSession' }) },
 });
 ```
+
+## Changelog
+
+- v1 was tested with Hapi v16 and node v6
+- v2 requires Hapi v20+ and node v16+
