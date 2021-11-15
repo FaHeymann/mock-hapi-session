@@ -1,0 +1,24 @@
+version: 2.1
+
+jobs:
+  node_16:
+    docker:
+      - image: circleci/node:16
+    steps:
+      - checkout
+      - run: npm i
+      - run: npm test
+  node_14:
+    docker:
+      - image: circleci/node:14
+    steps:
+      - checkout
+      - run: npm i
+      - run: npm test
+
+
+workflows:
+  matrix-tests:
+    jobs:
+      - node_16
+      - node_14

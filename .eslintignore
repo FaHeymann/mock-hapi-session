@@ -1,4 +1,3 @@
 node_modules/**
-/example/hapi/lib
-/lib/**
 /index.js
+.eslintrc.js

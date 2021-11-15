@@ -1,11 +1,13 @@
-import Lab from 'lab';
-import { expect, fail } from 'code';
-import Hapi from 'hapi';
-import yar from 'yar';
-import plugin from '../../src/mock-hapi-session';
+const Lab = require('@hapi/lab');
+const { expect, fail } = require('@hapi/code');
+const Hapi = require('@hapi/hapi');
+const yar = require('@hapi/yar');
+const plugin = require('../..');
 
-export const lab = Lab.script();
+const lab = Lab.script();
 const { describe, test: it } = lab;
+
+module.exports = { lab };
 
 const yarOptions = {
   name: 'someKey',
@@ -17,29 +19,30 @@ const yarOptions = {
     isHttpOnly: true,
     isSameSite: false,
     ttl: 24 * 3600 * 1000,
-  }
+  },
 };
 
 const createServer = async (pluginOptions) => {
-  const server = new Hapi.Server();
-  server.connection({
+  const server = new Hapi.Server({
     port: 80000,
   });
 
-  await server.register([{
-    register: plugin,
+  await server.register({
+    plugin,
     options: pluginOptions,
-  }, {
-    register: yar,
+  });
+
+  await server.register({
+    plugin: yar,
     options: yarOptions,
-  }]);
+  });
 
   server.route({
     method: 'GET',
     path: '/example',
-    handler: (request, reply) => {
+    handler: (request, h) => {
       const test = request.yar.get('someKey');
-      reply(test);
+      return h.response(test);
     },
   });
 

@@ -1,1 +1,1 @@
-module.exports = require('./lib/mock-hapi-session');
+module.exports = require('./src/mock-hapi-session');
