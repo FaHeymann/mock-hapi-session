@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.3",
-    "@hapi/code": "^8.0.4",
+    "@hapi/code": "^9.0.0",
     "@hapi/eslint-plugin": "^5.1.0",
     "@hapi/hapi": "^20.2.1",
     "@hapi/lab": "^24.4.0",
