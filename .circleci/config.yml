@@ -1,16 +1,23 @@
 version: 2.1
 
 jobs:
+  node_18:
+    docker:
+      - image: cimg/node:18.11
+    steps:
+      - checkout
+      - run: npm i
+      - run: npm test
   node_16:
     docker:
-      - image: circleci/node:16
+      - image: cimg/node:16.18
     steps:
       - checkout
       - run: npm i
       - run: npm test
   node_14:
     docker:
-      - image: circleci/node:14
+      - image: cimg/node:14.20
     steps:
       - checkout
       - run: npm i
@@ -20,5 +27,6 @@ jobs:
 workflows:
   matrix-tests:
     jobs:
+      - node_18
       - node_16
       - node_14
